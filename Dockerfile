@@ -39,7 +39,6 @@ USER ${NB_UID}
 # files across image layers when the permissions change
 WORKDIR /tmp
 RUN mamba install --yes \
-    'pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia' \
     'jupyterlab' \
     'notebook' \
     'jupyterhub' \
@@ -49,6 +48,17 @@ RUN mamba install --yes \
     npm cache clean --force && \
     jupyter lab clean && \
     rm -rf "/home/${NB_USER}/.cache/yarn" && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
+# Install PyTorch with pip
+# hadolint ignore=DL3013
+RUN pip install --no-cache-dir --index-url 'https://download.pytorch.org/whl/cu121' \
+    'torch==2.1.0+cu121' \
+    'torchvision==0.16.0+cu121' \
+    'torchaudio==2.1.0+cu121' \
+    'torchtext==0.16.0' \
+    'torchdata==0.7.0' && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
