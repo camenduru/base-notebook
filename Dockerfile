@@ -39,6 +39,7 @@ USER ${NB_UID}
 # files across image layers when the permissions change
 WORKDIR /tmp
 RUN mamba install --yes \
+    'pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia' \
     'jupyterlab' \
     'notebook' \
     'jupyterhub' \
