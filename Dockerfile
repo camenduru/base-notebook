@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 ARG REGISTRY=quay.io
 ARG OWNER=camenduru
-ARG BASE_CONTAINER=$REGISTRY/$OWNER/docker-stacks-foundation
+ARG BASE_CONTAINER=$REGISTRY/$OWNER/docker-stacks-foundation:1dd8d25
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
