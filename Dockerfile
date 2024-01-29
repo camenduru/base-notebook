@@ -62,7 +62,7 @@ RUN pip install --no-cache-dir --index-url 'https://download.pytorch.org/whl/cu1
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
-ENV JUPYTER_PORT=8888
+ENV JUPYTER_PORT=7860
 EXPOSE $JUPYTER_PORT
 
 # Configure container startup
